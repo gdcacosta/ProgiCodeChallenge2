@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FCE996D3-281A-436E-A011-A20BD810F0FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidCalculator.Api", "src\BidCalculator.Api\BidCalculator.Api.csproj", "{1320FCE4-B287-418D-A5F0-57F30141CF94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidCalculator.Domain", "src\BidCalculator.Domain\BidCalculator.Domain.csproj", "{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidCalculator.Application", "src\BidCalculator.Application\BidCalculator.Application.csproj", "{5C1467E2-3420-46AC-914E-3433F6B2B535}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{163157F6-7185-4EEB-8BFB-306317392CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidCalculator.Tests", "tests\BidCalculator.Tests\BidCalculator.Tests.csproj", "{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1320FCE4-B287-418D-A5F0-57F30141CF94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1320FCE4-B287-418D-A5F0-57F30141CF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1320FCE4-B287-418D-A5F0-57F30141CF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1320FCE4-B287-418D-A5F0-57F30141CF94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1467E2-3420-46AC-914E-3433F6B2B535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1467E2-3420-46AC-914E-3433F6B2B535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1467E2-3420-46AC-914E-3433F6B2B535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1467E2-3420-46AC-914E-3433F6B2B535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1320FCE4-B287-418D-A5F0-57F30141CF94} = {FCE996D3-281A-436E-A011-A20BD810F0FA}
+		{FAF9DD23-4B22-42E5-B4F6-C9BF8554049A} = {FCE996D3-281A-436E-A011-A20BD810F0FA}
+		{5C1467E2-3420-46AC-914E-3433F6B2B535} = {FCE996D3-281A-436E-A011-A20BD810F0FA}
+		{F3E3D58C-98D2-4061-A2BE-AE515AE4A7AD} = {163157F6-7185-4EEB-8BFB-306317392CC4}
+	EndGlobalSection
+EndGlobal
