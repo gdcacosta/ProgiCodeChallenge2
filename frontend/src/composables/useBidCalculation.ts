@@ -83,8 +83,5 @@ export function useBidCalculation(options: UseBidCalculationOptions = {}) {
     data,
     total,
     basePriceError,
-    refetch: executeFetch,
   };
 }
-
-export type UseBidCalculationReturn = ReturnType<typeof useBidCalculation>;

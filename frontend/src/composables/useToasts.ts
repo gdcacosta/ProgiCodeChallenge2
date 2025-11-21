@@ -40,5 +40,3 @@ export function useToasts() {
     removeToast,
   };
 }
-
-export type UseToastsReturn = ReturnType<typeof useToasts>;

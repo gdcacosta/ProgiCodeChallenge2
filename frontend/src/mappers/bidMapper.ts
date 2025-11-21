@@ -1,15 +1,15 @@
 import type { BidData, VehicleType } from "../types/bid";
 
 export interface FeeLineDtoRaw {
-  Code: string;
-  Description: string;
-  Amount: number;
+  code: string;
+  description: string;
+  amount: number;
 }
 export interface BidCalculationResponseRaw {
-  BasePrice: number;
+  basePrice: number;
   VehicleType: VehicleType;
-  Fees: FeeLineDtoRaw[];
-  Total: number;
+  fees: FeeLineDtoRaw[];
+  total: number;
 }
 
 export interface BidMapper {
@@ -17,14 +17,14 @@ export interface BidMapper {
 }
 
 export const defaultBidMapper: BidMapper = {
-  toDomain: (r: any) => ({
-    basePrice: r.basePrice ?? r.BasePrice,
-    total: r.total ?? r.Total,
-    fees: Array.isArray(r.fees ?? r.Fees)
-      ? (r.fees ?? r.Fees).map((f: any) => ({
-          code: f.code ?? f.Code,
-          description: f.description ?? f.Description,
-          amount: f.amount ?? f.Amount,
+  toDomain: (r: BidCalculationResponseRaw) => ({
+    basePrice: r.basePrice,
+    total: r.total,
+    fees: Array.isArray(r.fees)
+      ? r.fees.map((f) => ({
+          code: f.code,
+          description: f.description,
+          amount: f.amount,
         }))
       : [],
   }),
