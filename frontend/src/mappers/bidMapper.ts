@@ -1,4 +1,4 @@
-import type { BidData, VehicleType } from "../types/bid";
+import type { BidData, VehicleType } from "../types/bidTypes";
 
 export interface FeeLineDtoRaw {
   code: string;

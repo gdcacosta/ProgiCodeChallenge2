@@ -11,8 +11,3 @@ export interface BidData {
   total: number;
   fees: Fee[];
 }
-
-export interface ApiErrorPayload {
-  message?: string;
-  status?: number;
-}

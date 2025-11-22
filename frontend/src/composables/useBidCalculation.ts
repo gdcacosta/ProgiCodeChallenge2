@@ -1,6 +1,6 @@
 import { ref, computed, watch } from "vue";
 import { bidService } from "../services/bidService";
-import type { BidData, VehicleType } from "../types/bid";
+import type { BidData, VehicleType } from "../types/bidTypes";
 
 interface UseBidCalculationOptions {
   debounceMs?: number;

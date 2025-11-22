@@ -1,6 +1,6 @@
-<script setup>
-import BidCalculator from './components/BidCalculator.vue'
-import ToastContainer from './components/ToastContainer.vue'
+<script setup lang="ts">
+import BidCalculator from "./components/BidCalculator.vue";
+import ToastContainer from "./components/ToastContainer.vue";
 </script>
 
 <template>
@@ -9,5 +9,9 @@ import ToastContainer from './components/ToastContainer.vue'
 </template>
 
 <style scoped>
-html,body,#app { margin:0 }
+html,
+body,
+#app {
+  margin: 0;
+}
 </style>

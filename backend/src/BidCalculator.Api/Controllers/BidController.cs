@@ -16,13 +16,11 @@ public class BidController : ControllerBase
     [HttpGet("calculate")]
     [ProducesResponseType(typeof(BidCalculationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<BidCalculationResponse> Calculate([FromQuery] decimal basePrice, [FromQuery] VehicleType vehicleType)
+    public ActionResult<BidCalculationResponse> Calculate([FromQuery] BidCalculationRequest request)
     {
-        var request = new BidCalculationRequest(basePrice, vehicleType);
-        if (!TryValidateModel(request))
-        {
-            return BadRequest(ModelState);
-        }
+        if (!ModelState.IsValid)
+            return ValidationProblem(ModelState);
+
         var result = _service.Calculate(request);
         return Ok(result);
     }

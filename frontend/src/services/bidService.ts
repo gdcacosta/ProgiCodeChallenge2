@@ -1,4 +1,4 @@
-import type { BidData, VehicleType } from "../types/bid";
+import type { BidData, VehicleType } from "../types/bidTypes";
 import { NetworkError } from "../errors/NetworkError";
 import { getAppConfig } from "../config/appConfig";
 import type { HttpClient } from "../http/httpClient";
@@ -28,7 +28,6 @@ export function createBidService(deps: BidServiceDeps = {}): BidService {
     basePrice: number,
     vehicleType: VehicleType
   ): Promise<BidData> {
-    if (basePrice <= 0) throw new Error("Base price must be > 0");
     const url = new URL("/api/bid/calculate", apiBase);
     url.search = new URLSearchParams({
       basePrice: String(basePrice),
