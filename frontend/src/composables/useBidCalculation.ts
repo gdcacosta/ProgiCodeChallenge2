@@ -44,8 +44,11 @@ export function useBidCalculation(options: UseBidCalculationOptions = {}) {
         vehicleType.value
       );
     } catch (err: unknown) {
-      const e = err as Error;
-      error.value = e.message || "Unknown error";
+      if (err instanceof Error) {
+        error.value = err.message;
+      } else {
+        error.value = "Unknown error";
+      }
       data.value = null;
     } finally {
       loading.value = false;
