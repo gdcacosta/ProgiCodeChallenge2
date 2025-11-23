@@ -66,16 +66,18 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useBidCalculation } from "../composables/useBidCalculation";
-import { useToasts } from "../composables/useToasts";
+import { useToast } from "vue-toastification";
 
 const { basePrice, vehicleType, loading, error, data, total, basePriceError } =
   useBidCalculation({ debounceMs: 400, initialBasePrice: 1000 });
 
-const { addToast } = useToasts();
+const toast = useToast();
 
 watch(error, (val) => {
   if (val) {
-    addToast("error", val);
+    toast.error(val, {
+      timeout: 2000,
+    });
   }
 });
 </script>
