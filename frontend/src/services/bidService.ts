@@ -1,5 +1,4 @@
 import type { BidData, VehicleType } from "../types/bidTypes";
-import { NetworkError } from "../errors/NetworkError";
 import { getAppConfig } from "../config/appConfig";
 import type { HttpClient } from "../http/httpClient";
 import { fetchHttpClient } from "../http/httpClient";
@@ -38,7 +37,7 @@ export function createBidService(deps: BidServiceDeps = {}): BidService {
       return mapper.toDomain(raw);
     } catch (e) {
       if (e instanceof Error) throw e;
-      throw new NetworkError("Unknown error occurred");
+      throw new Error("Unknown error occurred during bid calculation");
     }
   }
 
