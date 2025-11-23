@@ -13,11 +13,11 @@ export interface BidCalculationResponseRaw {
 }
 
 export interface BidMapper {
-  toDomain(raw: BidCalculationResponseRaw): BidData;
+  toBidData(raw: BidCalculationResponseRaw): BidData;
 }
 
 export const defaultBidMapper: BidMapper = {
-  toDomain: (r: BidCalculationResponseRaw) => ({
+  toBidData: (r: BidCalculationResponseRaw) => ({
     basePrice: r.basePrice,
     total: r.total,
     fees: Array.isArray(r.fees)

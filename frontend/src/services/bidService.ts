@@ -33,8 +33,10 @@ export function createBidService(config: BidServiceConfig = {}): BidService {
       vehicleType,
     }).toString();
     try {
-      const raw = await http.get<BidCalculationResponseRaw>(url.toString());
-      return mapper.toDomain(raw);
+      const response = await http.get<BidCalculationResponseRaw>(
+        url.toString()
+      );
+      return mapper.toBidData(response);
     } catch (e) {
       if (e instanceof Error) throw e;
       throw new Error("Unknown error occurred during bid calculation");
