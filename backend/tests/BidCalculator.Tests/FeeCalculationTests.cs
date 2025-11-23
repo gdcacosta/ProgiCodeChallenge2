@@ -9,12 +9,14 @@ namespace BidCalculator.Tests;
 
 public class FeeCalculationTests
 {
-    private readonly BidCalculationService _service = new();
+    private BidCalculationService CreateService()
+    => new BidCalculationService();
 
     [Fact]
     public void Example_From_Requirements_Common_1000()
     {
-        var response = _service.Calculate(new BidCalculationRequest(CommonScenario.BasePrice, VehicleType.Common));
+        BidCalculationService service = CreateService();
+        BidCalculationResponse response = service.Calculate(new BidCalculationRequest(CommonScenario.BasePrice, VehicleType.Common));
 
         Assert.Equal(CommonScenario.BasePrice, response.BasePrice);
         Assert.Equal(CommonScenario.ExpectedTotal, response.Total);
@@ -34,8 +36,9 @@ public class FeeCalculationTests
     [InlineData(5000, VehicleType.Luxury, 200)] 
     public void BuyerFee_MinMax(decimal basePrice, VehicleType type, decimal expectedBuyerFee)
     {
-        var response = _service.Calculate(new BidCalculationRequest(basePrice, type));
-        var buyerFeeLine = FindFee(response.Fees, FeeCodes.BasicBuyer);
+        BidCalculationService service = CreateService();
+        BidCalculationResponse response = service.Calculate(new BidCalculationRequest(basePrice, type));
+        FeeLineDto buyerFeeLine = FindFee(response.Fees, FeeCodes.BasicBuyer);
         Assert.Equal(expectedBuyerFee, buyerFeeLine.Amount);
     }
 
@@ -49,8 +52,9 @@ public class FeeCalculationTests
     [InlineData(3001, 20)]
     public void Association_Fee_Tiers(decimal basePrice, decimal expectedAssociationFee)
     {
-        var response = _service.Calculate(new BidCalculationRequest(basePrice, VehicleType.Common));
-        var associationFeeLine = FindFee(response.Fees, FeeCodes.Association);
+        BidCalculationService service = CreateService();
+        BidCalculationResponse response = service.Calculate(new BidCalculationRequest(basePrice, VehicleType.Common));
+        FeeLineDto associationFeeLine = FindFee(response.Fees, FeeCodes.Association);
         Assert.Equal(expectedAssociationFee, associationFeeLine.Amount);
     }
 

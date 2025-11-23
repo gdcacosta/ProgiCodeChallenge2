@@ -1,6 +1,5 @@
 using BidCalculator.Application.Contracts;
 using BidCalculator.Application.Services;
-using BidCalculator.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BidCalculator.Api.Controllers;
