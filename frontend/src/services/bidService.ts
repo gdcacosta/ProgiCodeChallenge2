@@ -18,10 +18,10 @@ export interface BidService {
   calculateBid(basePrice: number, vehicleType: VehicleType): Promise<BidData>;
 }
 
-export function createBidService(deps: BidServiceConfig = {}): BidService {
-  const http = deps.http ?? fetchHttpClient;
-  const mapper = deps.mapper ?? defaultBidMapper;
-  const apiBase = deps.apiBaseUrl ?? getAppConfig().apiBaseUrl;
+export function createBidService(config: BidServiceConfig = {}): BidService {
+  const http = config.http ?? fetchHttpClient;
+  const mapper = config.mapper ?? defaultBidMapper;
+  const apiBase = config.apiBaseUrl ?? getAppConfig().apiBaseUrl;
 
   async function calculateBid(
     basePrice: number,
