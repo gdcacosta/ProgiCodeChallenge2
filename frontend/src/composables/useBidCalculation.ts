@@ -22,22 +22,19 @@ export function useBidCalculation(options: UseBidCalculationOptions = {}) {
 
   const basePriceError = computed(() => {
     const v = basePrice.value;
+
     if (v == null) return "Base price is required";
     if (Number.isNaN(v)) return "Base price must be a number";
     if (v <= 0) return "Base price must be greater than 0";
     if (v > MAX_ALLOWED)
       return `Base price too large (max ${MAX_ALLOWED.toLocaleString()})`;
+
     return null;
   });
 
   let timer: number | undefined;
 
-  async function executeFetch() {
-    if (basePriceError.value) {
-      data.value = null;
-      return;
-    }
-
+  async function fetchBidCalculation(): Promise<void> {
     loading.value = true;
     error.value = "";
 
@@ -46,21 +43,25 @@ export function useBidCalculation(options: UseBidCalculationOptions = {}) {
         basePrice.value,
         vehicleType.value
       );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        error.value = e.message || "Unknown error";
-      } else {
-        error.value = "Unknown error";
-      }
+    } catch (err: unknown) {
+      const e = err as Error;
+      error.value = e.message || "Unknown error";
       data.value = null;
     } finally {
       loading.value = false;
     }
   }
 
-  function scheduleFetch() {
+  function scheduleFetch(): void {
     clearTimeout(timer);
-    timer = window.setTimeout(executeFetch, debounceMs);
+
+    timer = window.setTimeout(() => {
+      if (basePriceError.value) {
+        data.value = null;
+        return;
+      }
+      fetchBidCalculation();
+    }, debounceMs);
   }
 
   watch([basePrice, vehicleType], scheduleFetch, { immediate: true });
