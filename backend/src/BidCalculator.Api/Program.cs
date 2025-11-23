@@ -1,15 +1,19 @@
+using BidCalculator.Api.Configuration;
 using BidCalculator.Application.Services;
 using BidCalculator.Application.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using BidCalculator.Api.Configuration;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+}); ;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation(builder.Configuration);
 builder.Services.AddScoped<IBidCalculationService, BidCalculationService>();

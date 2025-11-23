@@ -8,7 +8,7 @@ import type {
 } from "../mappers/bidMapper";
 import { defaultBidMapper } from "../mappers/bidMapper";
 
-export interface BidServiceDeps {
+export interface BidServiceConfig {
   http?: HttpClient;
   mapper?: BidMapper;
   apiBaseUrl?: string;
@@ -18,7 +18,7 @@ export interface BidService {
   calculateBid(basePrice: number, vehicleType: VehicleType): Promise<BidData>;
 }
 
-export function createBidService(deps: BidServiceDeps = {}): BidService {
+export function createBidService(deps: BidServiceConfig = {}): BidService {
   const http = deps.http ?? fetchHttpClient;
   const mapper = deps.mapper ?? defaultBidMapper;
   const apiBase = deps.apiBaseUrl ?? getAppConfig().apiBaseUrl;
