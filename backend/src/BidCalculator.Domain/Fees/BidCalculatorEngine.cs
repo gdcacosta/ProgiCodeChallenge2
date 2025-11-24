@@ -32,8 +32,7 @@ public static class BidCalculatorEngine
 
     private static decimal CalculateAssociationFee(decimal basePrice)
     {
-        var range = AssociationFeeRules.ResolveRange(basePrice);
-        return AssociationFeeRules.GetFee(range);
+        return AssociationFeeRules.GetFee(basePrice);
     }
 
     private static decimal Round2(decimal value)
