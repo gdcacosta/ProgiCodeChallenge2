@@ -2,10 +2,7 @@ import type { BidData, VehicleType } from "../types/bidTypes";
 import { getAppConfig } from "../config/appConfig";
 import type { HttpClient } from "../http/httpClient";
 import { fetchHttpClient } from "../http/httpClient";
-import type {
-  BidMapper,
-  BidCalculationResponseRaw,
-} from "../mappers/bidMapper";
+import type { BidMapper, BidCalculationResponse } from "../mappers/bidMapper";
 import { defaultBidMapper } from "../mappers/bidMapper";
 
 export interface BidServiceConfig {
@@ -33,9 +30,7 @@ export function createBidService(config: BidServiceConfig = {}): BidService {
       vehicleType,
     }).toString();
     try {
-      const response = await http.get<BidCalculationResponseRaw>(
-        url.toString()
-      );
+      const response = await http.get<BidCalculationResponse>(url.toString());
       return mapper.toBidData(response);
     } catch (e) {
       if (e instanceof Error) throw e;

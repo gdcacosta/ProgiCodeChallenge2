@@ -5,7 +5,7 @@ export interface FeeLineDtoRaw {
   description: string;
   amount: number;
 }
-export interface BidCalculationResponseRaw {
+export interface BidCalculationResponse {
   basePrice: number;
   VehicleType: VehicleType;
   fees: FeeLineDtoRaw[];
@@ -13,11 +13,11 @@ export interface BidCalculationResponseRaw {
 }
 
 export interface BidMapper {
-  toBidData(raw: BidCalculationResponseRaw): BidData;
+  toBidData(bid: BidCalculationResponse): BidData;
 }
 
 export const defaultBidMapper: BidMapper = {
-  toBidData: (r: BidCalculationResponseRaw) => ({
+  toBidData: (r: BidCalculationResponse) => ({
     basePrice: r.basePrice,
     total: r.total,
     fees: Array.isArray(r.fees)

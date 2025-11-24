@@ -17,7 +17,6 @@ public sealed class BidCalculationService : IBidCalculationService
 
             return new BidCalculationResponse(
                 domainResult.BasePrice,
-                domainResult.VehicleType,
                 feeDtos,
                 domainResult.Total
             );
