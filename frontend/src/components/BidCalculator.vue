@@ -69,7 +69,7 @@ import { useBidCalculation } from "../composables/useBidCalculation";
 import { useToast } from "vue-toastification";
 
 const { basePrice, vehicleType, loading, error, data, total, basePriceError } =
-  useBidCalculation({ debounceMs: 400, initialBasePrice: 1000 });
+  useBidCalculation({ initialBasePrice: 1000 });
 
 const toast = useToast();
 
