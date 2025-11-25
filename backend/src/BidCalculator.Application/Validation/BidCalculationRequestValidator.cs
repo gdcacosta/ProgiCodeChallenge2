@@ -7,7 +7,7 @@ public sealed class BidCalculationRequestValidator : AbstractValidator<BidCalcul
 {
     public BidCalculationRequestValidator()
     {
-        RuleFor(r => r.BasePrice).GreaterThan(0);
+        RuleFor(r => r.BasePrice).GreaterThan(0).LessThanOrEqualTo(1_000_000);
         RuleFor(r => r.VehicleType).IsInEnum();
     }
 }
