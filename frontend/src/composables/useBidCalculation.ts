@@ -1,18 +1,17 @@
 import { ref, computed, watch } from "vue";
 import { bidService } from "../services/bidService";
-import type { BidData, VehicleType } from "../types/bidTypes";
+import { VehicleType, type BidData } from "../types/bidTypes";
 
 interface UseBidCalculationOptions {
-  debounceMs?: number;
   initialBasePrice?: number;
   initialVehicleType?: VehicleType;
 }
 
 export function useBidCalculation(options: UseBidCalculationOptions = {}) {
-  const debounceMs = options.debounceMs ?? 400;
-
   const basePrice = ref(options.initialBasePrice ?? 1000);
-  const vehicleType = ref<VehicleType>(options.initialVehicleType ?? "Common");
+  const vehicleType = ref<VehicleType>(
+    options.initialVehicleType ?? VehicleType.Common
+  );
 
   const loading = ref(false);
   const error = ref("");
@@ -64,7 +63,7 @@ export function useBidCalculation(options: UseBidCalculationOptions = {}) {
         return;
       }
       fetchBidCalculation();
-    }, debounceMs);
+    }, 400);
   }
 
   watch([basePrice, vehicleType], scheduleFetch, { immediate: true });

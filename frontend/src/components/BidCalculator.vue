@@ -25,9 +25,9 @@
       </label>
       <label class="field">
         <span>Vehicle Type</span>
-        <select v-model="vehicleType">
-          <option value="Common">Common</option>
-          <option value="Luxury">Luxury</option>
+        <select v-model.number="vehicleType">
+          <option :value="VehicleType.Common">Common</option>
+          <option :value="VehicleType.Luxury">Luxury</option>
         </select>
       </label>
     </div>
@@ -66,6 +66,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useBidCalculation } from "../composables/useBidCalculation";
+import { VehicleType } from "../types/bidTypes";
 import { useToast } from "vue-toastification";
 
 const { basePrice, vehicleType, loading, error, data, total, basePriceError } =

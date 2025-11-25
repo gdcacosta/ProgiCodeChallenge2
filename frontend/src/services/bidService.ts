@@ -15,6 +15,14 @@ export interface BidService {
   calculateBid(basePrice: number, vehicleType: VehicleType): Promise<BidData>;
 }
 
+function extractProblemDetailsError(e: any): string | null {
+  if (e?.status === 400 && e?.errors) {
+    const firstKey = Object.keys(e.errors)[0];
+    return e.errors[firstKey][0];
+  }
+  return null;
+}
+
 export function createBidService(config: BidServiceConfig = {}): BidService {
   const http = config.http ?? fetchHttpClient;
   const mapper = config.mapper ?? defaultBidMapper;
@@ -27,14 +35,19 @@ export function createBidService(config: BidServiceConfig = {}): BidService {
     const url = new URL("/api/bid/calculate", apiBase);
     url.search = new URLSearchParams({
       basePrice: String(basePrice),
-      vehicleType,
+      vehicleType: String(vehicleType),
     }).toString();
     try {
       const response = await http.get<BidCalculationResponse>(url.toString());
       return mapper.toBidData(response);
-    } catch (e) {
-      if (e instanceof Error) throw e;
-      throw new Error("Unknown error occurred during bid calculation");
+    } catch (e: unknown) {
+      const validationMessage = extractProblemDetailsError(e);
+
+      if (validationMessage) {
+        throw new Error(validationMessage);
+      }
+
+      throw new Error("Unexpected error during bid calculation");
     }
   }
 
