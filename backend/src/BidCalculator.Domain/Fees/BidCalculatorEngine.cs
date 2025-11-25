@@ -11,9 +11,9 @@ public static class BidCalculatorEngine
         var result = new BidCalculationResult(basePrice, vehicleType);
 
    
-        var rawBuyer = basePrice * FeeRates.BuyerPercent;
+        var initialBuyerFee = basePrice * FeeRates.BuyerPercent;
         var buyerRange = BuyerFeeRules.GetRange(vehicleType);
-        var buyerFee = Math.Clamp(rawBuyer, buyerRange.Min, buyerRange.Max);
+        var buyerFee = Math.Clamp(initialBuyerFee, buyerRange.Min, buyerRange.Max);
         result.Add(FeeCodes.BasicBuyer, $"Basic buyer fee ({FeeRates.BuyerPercent:P0}, min {buyerRange.Min:C0}, max {buyerRange.Max:C0})", Round2(buyerFee));
 
         var specialPercent = vehicleType == VehicleType.Common ? FeeRates.CommonSpecialPercent : FeeRates.LuxurySpecialPercent;
